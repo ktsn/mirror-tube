@@ -1,0 +1,4 @@
+.mt-mirror-horizontal {
+  -webkit-transform: scaleX(-1) !important;
+  transform: scaleX(-1) !important;
+}
