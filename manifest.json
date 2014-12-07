@@ -19,5 +19,13 @@
     "default_icon": "images/icon.png",
     "default_title": "MirrorTube",
     "default_popup": "popup.html"
-  }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "css": ["css/transform.css"],
+      "js": ["js/commands.js", "js/adapters/youtube-adapter.js"]
+    }
+  ]
 }

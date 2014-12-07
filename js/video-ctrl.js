@@ -1,15 +1,5 @@
 ;(function(window, document, chrome, Command) {
   var VideoCtrl = {
-    initVideo: function(completion) {
-      chrome.tabs.insertCSS(null, { file: 'css/transform.css' });
-      insertScripts([
-        'js/commands.js',
-        'js/adapters/youtube-adapter.js'
-      ], function() {
-        completion();
-      });
-    },
-
     isMirrored: function(completion) {
       executeCommand(Command.isMirrored, {}, function(res) {
         completion(res.mirrored);

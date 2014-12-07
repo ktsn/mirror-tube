@@ -28,7 +28,5 @@ window.onload = function() {
     playbackRatePreview: document.getElementById('playback-rate-preview')
   };
 
-  VideoCtrl.initVideo(function() {
-    Popup.initialize(form);
-  });
+  Popup.initialize(form);
 };
