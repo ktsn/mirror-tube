@@ -17,6 +17,7 @@
   ],
   "page_action": {
     "default_icon": "images/icon.png",
-    "default_title": "Mirror the video"
+    "default_title": "MirrorTube",
+    "default_popup": "popup.html"
   }
 }
