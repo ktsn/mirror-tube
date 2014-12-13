@@ -1,13 +1,27 @@
 ;(function(document, chrome, Command) {
   var kMirroredClassName = 'mt-mirror-horizontal';
+  var video = document.getElementsByClassName('html5-main-video')[0];
+  var repeat = {
+    enabled: false,
+    start: 0,
+    end: 0
+  };
+
+  video.addEventListener('timeupdate', function(event) {
+    if (repeat.enabled && repeat.start < repeat.end) {
+      if (video.currentTime < repeat.start || video.currentTime > repeat.end) {
+        video.currentTime = repeat.start;
+      }
+    }
+  });
 
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    var video = document.getElementsByClassName('html5-main-video')[0];
     switch (request.command) {
       case Command.getVideoState:
         sendResponse({
           mirrored: video.classList.contains(kMirroredClassName),
-          playbackRate: video.playbackRate
+          playbackRate: video.playbackRate,
+          repeat: repeat
         });
         break;
       case Command.changeMirrorMode:
@@ -19,6 +33,13 @@
         break;
       case Command.changePlaybackRate:
         video.playbackRate = request.playbackRate;
+        break;
+      case Command.changeRepeatMode:
+        repeat.enabled = request.on;
+        break;
+      case Command.changeRepeatTime:
+        repeat.start = request.start;
+        repeat.end = request.end;
         break;
       default:
     }

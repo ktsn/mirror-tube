@@ -10,6 +10,14 @@
 
     changePlaybackRate: function(rate) {
       executeCommand(Command.changePlaybackRate, { playbackRate: rate });
+    },
+
+    changeRepeatMode: function(on) {
+      executeCommand(Command.changeRepeatMode, { on: on });
+    },
+
+    changeRepeatTime: function(start, end) {
+      executeCommand(Command.changeRepeatTime, { start: start, end: end });
     }
   };
 
