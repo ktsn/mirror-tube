@@ -21,20 +21,6 @@
     }
   };
 
-  function insertScripts(scripts, completion) {
-    var scriptLength = scripts.length;
-    var completeNum = 0;
-    var cb = function() {
-      completeNum++;
-      if (completeNum < scriptLength) {
-        chrome.tabs.executeScript(null, { file: scripts[completeNum] }, cb);
-        return;
-      }
-      completion();
-    };
-    chrome.tabs.executeScript(null, { file: scripts[0] }, cb);
-  }
-
   function executeCommand(command, params, completion) {
     params.command = command;
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
