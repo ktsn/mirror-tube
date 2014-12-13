@@ -2,13 +2,7 @@ var Popup = {
   initialize: function(form) {
     this.form = form;
 
-    VideoCtrl.isMirrored(function(mirrored) {
-      form.mirror.checked = mirrored;
-    });
-    VideoCtrl.getPlaybackRate(function(rate) {
-      form.playbackRate.value = rate;
-      form.playbackRatePreview.innerHTML = rate.toFixed(1);
-    });
+    this.applyVideoState();
 
     form.mirror.addEventListener('change', function(e) {
       VideoCtrl.changeMirrorMode(e.target.checked);
@@ -17,6 +11,14 @@ var Popup = {
       VideoCtrl.changePlaybackRate(e.target.value);
       form.playbackRatePreview.innerHTML = parseFloat(e.target.value).toFixed(1);
     });
+  },
+
+  applyVideoState: function() {
+    VideoCtrl.getVideoState(function(state) {
+      this.form.mirror.checked = state.mirrored;
+      this.form.playbackRate.value = state.playbackRate;
+      this.form.playbackRatePreview.innerHTML = state.playbackRate.toFixed(1)
+    }.bind(this));
   }
 };
 

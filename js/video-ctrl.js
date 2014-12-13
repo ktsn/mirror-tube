@@ -1,19 +1,11 @@
 ;(function(window, document, chrome, Command) {
   var VideoCtrl = {
-    isMirrored: function(completion) {
-      executeCommand(Command.isMirrored, {}, function(res) {
-        completion(res.mirrored);
-      });
+    getVideoState: function(completion) {
+      executeCommand(Command.getVideoState, {}, completion);
     },
 
     changeMirrorMode: function(on) {
       executeCommand(Command.changeMirrorMode, { on: on });
-    },
-
-    getPlaybackRate: function(completion) {
-      executeCommand(Command.getPlaybackRate, {}, function(res) {
-        completion(res.playbackRate);
-      });
     },
 
     changePlaybackRate: function(rate) {

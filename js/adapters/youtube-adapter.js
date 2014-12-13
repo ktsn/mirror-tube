@@ -4,8 +4,11 @@
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     var video = document.getElementsByClassName('html5-main-video')[0];
     switch (request.command) {
-      case Command.isMirrored:
-        sendResponse({ mirrored: video.classList.contains(kMirroredClassName) });
+      case Command.getVideoState:
+        sendResponse({
+          mirrored: video.classList.contains(kMirroredClassName),
+          playbackRate: video.playbackRate
+        });
         break;
       case Command.changeMirrorMode:
         if (request.on) {
@@ -13,9 +16,6 @@
         } else {
           video.classList.remove(kMirroredClassName);
         }
-        break;
-      case Command.getPlaybackRate:
-        sendResponse({ playbackRate: video.playbackRate });
         break;
       case Command.changePlaybackRate:
         video.playbackRate = request.playbackRate;

@@ -1,6 +1,5 @@
 var _MtCommand = {
-  isMirrored: 'is-mirrored',
+  getVideoState: 'get-video-state',
   changeMirrorMode: 'change-mirror-mode',
-  getPlaybackRate: 'get-playback-rate',
   changePlaybackRate: 'change-playback-rate'
 };
