@@ -1,21 +1,26 @@
 ;(function(document, chrome, Command) {
   var kMirroredClassName = 'mt-mirror-horizontal';
-  var video = document.getElementsByClassName('html5-main-video')[0];
   var repeat = {
     enabled: false,
     start: 0,
     end: 0
   };
 
-  video.addEventListener('timeupdate', function(event) {
+  document.documentElement.addEventListener('timeupdate', function(event) {
+    if (!event.target.classList.contains('html5-main-video')) {
+      return;
+    }
+
+    var video = event.target;
     if (repeat.enabled && repeat.start < repeat.end) {
       if (video.currentTime < repeat.start || video.currentTime > repeat.end) {
         video.currentTime = repeat.start;
       }
     }
-  });
+  }, true);
 
   chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    var video = document.getElementsByClassName('html5-main-video')[0];
     switch (request.command) {
       case Command.getVideoState:
         sendResponse({
