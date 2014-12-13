@@ -1,0 +1,39 @@
+.form-config {
+  display: table;
+  border-collapse: collapse;
+}
+
+.form-config > .form-row {
+  border-bottom: 2px groove rgba(220, 220, 220, 0.1);
+  display: table-row;
+}
+
+.form-config > .form-row:last-child {
+  border-bottom: none;
+}
+
+.form-row:hover {
+  background-color: rgba(255, 226, 226, 0.3);
+}
+
+.form-config .form-label,
+.form-config .form-input-wrapper {
+  display: table-cell;
+  padding: 8px 4px;
+}
+
+.form-config .form-label,
+.form-config .form-input-wrapper > * {
+  vertical-align: middle;
+}
+
+.slider-block {
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+}
+
+#video-controller {
+  width: 220px;
+}
