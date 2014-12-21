@@ -42,9 +42,13 @@
       case Command.changeRepeatMode:
         repeat.enabled = request.on;
         break;
-      case Command.changeRepeatTime:
-        repeat.start = request.start;
-        repeat.end = request.end;
+      case Command.updateRepeatStartTime:
+        repeat.start = video.currentTime;
+        sendResponse(repeat);
+        break;
+      case Command.updateRepeatEndTime:
+        repeat.end = video.currentTime;
+        sendResponse(repeat);
         break;
       default:
     }

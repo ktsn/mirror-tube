@@ -16,8 +16,12 @@
       executeCommand(Command.changeRepeatMode, { on: on });
     },
 
-    changeRepeatTime: function(start, end) {
-      executeCommand(Command.changeRepeatTime, { start: start, end: end });
+    updateRepeatStartTime: function(completion) {
+      executeCommand(Command.updateRepeatStartTime, {}, completion);
+    },
+
+    updateRepeatEndTime: function(completion) {
+      executeCommand(Command.updateRepeatEndTime, {}, completion);
     }
   };
 

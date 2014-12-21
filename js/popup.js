@@ -3,10 +3,9 @@ var Popup = {
     this.form = form;
     this.applyVideoState();
 
-    var onChangeRepeatTime = function(e) {
-      var start = translateTimeToSeconds(form.repeat.start.value);
-      var end = translateTimeToSeconds(form.repeat.end.value);
-      VideoCtrl.changeRepeatTime(start, end);
+    var onUpdateRepeatTime = function(repeat) {
+      form.repeat.start.value = translateSecondsToTime(Math.floor(repeat.start));
+      form.repeat.end.value = translateSecondsToTime(Math.floor(repeat.end));
     };
 
     form.mirror.addEventListener('change', function(e) {
@@ -19,8 +18,12 @@ var Popup = {
     form.repeat.enabled.addEventListener('change', function(e) {
       VideoCtrl.changeRepeatMode(e.target.checked);
     });
-    form.repeat.start.addEventListener('input', onChangeRepeatTime);
-    form.repeat.end.addEventListener('input', onChangeRepeatTime);
+    form.repeat.start.addEventListener('click', function(e) {
+      VideoCtrl.updateRepeatStartTime(onUpdateRepeatTime);
+    });
+    form.repeat.end.addEventListener('click', function(e) {
+      VideoCtrl.updateRepeatEndTime(onUpdateRepeatTime);
+    });
   },
 
   applyVideoState: function() {
@@ -29,8 +32,8 @@ var Popup = {
       this.form.playbackRate.value = state.playbackRate;
       this.form.playbackRatePreview.innerHTML = state.playbackRate.toFixed(1);
       this.form.repeat.enabled.checked = state.repeat.enabled;
-      this.form.repeat.start.value = translateSecondsToTime(state.repeat.start);
-      this.form.repeat.end.value = translateSecondsToTime(state.repeat.end);
+      this.form.repeat.start.value = translateSecondsToTime(Math.floor(state.repeat.start));
+      this.form.repeat.end.value = translateSecondsToTime(Math.floor(state.repeat.end));
     }.bind(this));
   }
 };
@@ -38,11 +41,6 @@ var Popup = {
 /**
  * time ::= digit digit : digit digit
  */
-function translateTimeToSeconds(time) {
-  var splitTime = time.split(':');
-  return parseInt(splitTime[0]) * 60 + parseInt(splitTime[1]);
-}
-
 function translateSecondsToTime(seconds) {
   return ('0' + Math.floor(seconds / 60)).slice(-2) + ':' + ('0' + (seconds % 60)).slice(-2);
 }

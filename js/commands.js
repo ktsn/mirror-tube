@@ -3,5 +3,6 @@ var _MtCommand = {
   changeMirrorMode: 'change-mirror-mode',
   changePlaybackRate: 'change-playback-rate',
   changeRepeatMode: 'change-repeat-mode',
-  changeRepeatTime: 'change-repeat-time'
+  updateRepeatStartTime: 'update-repeat-start-time',
+  updateRepeatEndTime: 'update-repeat-end-time'
 };
