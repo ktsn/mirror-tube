@@ -2,8 +2,8 @@
   "manifest_version": 2,
 
   "name": "MirrorTube",
-  "description": "Mirrors YouTube videos",
-  "version": "0.2",
+  "description": "Provides useful features for dancers",
+  "version": "0.3",
   "author": "katashin",
 
   "background": {
