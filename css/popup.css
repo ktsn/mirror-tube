@@ -37,3 +37,30 @@
 #video-controller {
   width: 220px;
 }
+
+.repeat-time-group {
+  display: inline-block;
+  font-size: 14px;
+}
+
+.button-repeat-time {
+  background-color: transparent;
+  border-width: 0;
+  border-bottom: 1px solid #0077cc;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  color: #0077cc;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  padding-bottom: 0;
+}
+
+.button-repeat-time:hover {
+  border-color: #f51111;
+  color: #f51111;
+}
+
+.button-repeat-time:active {
+  background-color: rgba(255, 200, 200, 0.5);
+}
